@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <meta charset="utf-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel="stylesheet" href="css/word-counter.css"> 
+    </head>
+    
+    <body>        
+        <textarea rows="10" cols="27" "text" id= "ui" onkeyup="update()" placeholder="Please write something here! This web application will count and display the written words and characters." ></textarea>
+        
+        <div class="hide">
+            <textarea readonly rows="5" cols="50" "text" id= "d1" onkeyup="update()" placeholder="You written text will appear here."></textarea>            
+        </div>
+        
+        <h3><span id= "d2" >[Word Count will appear here.]</span></h3>
+        
+        <script>            
+            function update(){
+                var ui_val = e("ui").value;
+                
+                e("d1").innerHTML = ui_val;
+                
+                e("d2").innerHTML = "Words : "+ wordcount(ui_val)+"<br>Characters : " + ui_val.length  + "<br>Nonspaces: "+ nonSpacesCount(ui_val) ;
+            }            
+            function nonSpacesCount(txt){
+                return (txt.match(/\S/g)||[]).length;
+            }            
+            function wordcount(txt){
+                return mysplit(txt).length;
+            }            
+            function mysplit(txt){
+                txt = txt.replace(/^\s+/,"");
+                if(""==txt)return [];
+                txt = txt.replace(/\s+$/,"");
+                return txt.split(/\s+/);
+            }            
+            function e(id){
+                return document.getElementById(id);
+            }
+        </script>
+        
+        <footer>
+			Made by Soumen <br> Version-1.0    April 2018<br>		
+		</footer>
+    </body>
+</html>
